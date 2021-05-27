@@ -1,0 +1,14 @@
+1 - Iniciar projeto node
+2 - Instalar express
+3 - Instalar codemon
+4 - Instalar consign
+5 - Instalar body-parser
+6 - Instalar xmlhttprequest
+6 - Configurar servidor (pasta config)
+7 - Criar controllers (pasta e arquivos)
+8 - Configurar rotas iniciais
+9 - Atrelar controller ao consign
+10 - Instalar mysql
+11 - Configurar banco e tabelas
+12 - Criar model (pasta e classes)
+

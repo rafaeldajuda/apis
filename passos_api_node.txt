@@ -11,4 +11,5 @@
 10 - Instalar mysql
 11 - Configurar banco e tabelas
 12 - Criar model (pasta e classes)
+13 - Criar classes (controller)
 

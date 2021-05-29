@@ -5,11 +5,14 @@ module.exports = (app) => {
     //GERAR TOKEN
     app.post('/token', (req, res) =>{
         const cliente = req.body;
-        
+
         if(cliente.idCliente == undefined){
             res.status(400).json({status:400, msg: 'JSON inválido'});
         }else{
-            pluggto.gerarToken(res, cliente);
+            pluggto.pegarDadosCliente(cliente, (callback) =>{
+                const clienteBanco = callback;
+                pluggto.gerarToken(res, cliente, clienteBanco);
+            });    
         }
         
     });

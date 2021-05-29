@@ -3,46 +3,37 @@ const XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 class Pluggto{
 
-    gerarToken(res, cliente){
-        //PEGAR DADOS CLIENTE
+    gerarToken(res, cliente ,clienteBanco){
+        const client_id = clienteBanco.client_id;
+        const client_secret = clienteBanco.client_secret;
+        const username = clienteBanco.username;
+        const password = clienteBanco.password;
+
+        const urlToken = 'https://api.plugg.to/oauth/token';
+        const metodo = 'POST';
+        const corpo = `grant_type=password&client_id=${client_id}&client_secret=${client_secret}&username=${username}&password=${password}`;
+        const header = 'application/x-www-form-urlencoded';
+
+        const respostaPluggto = enviarRequisicao(metodo, urlToken, corpo, header);
+                
+        //FAZER UPDATE NO BANCO
+        if(respostaPluggto.status == 200){
+            this.salvarToken(respostaPluggto.resultado.access_token, respostaPluggto.resultado.refresh_token, cliente.idCliente);
+        }
+                    
+        res.status(respostaPluggto.status).json(respostaPluggto);
+    }
+
+    pegarDadosCliente(cliente, callback){
         var sql = 'SELECT client_id, client_secret, username, password FROM tokenPluggto WHERE id = ' + cliente.idCliente;
-        var clienteBanco = {};
         conexao.query(sql, (erro, resultados) =>{
             if(erro){
-                console.log(erro);
+                callback(erro, null);
             }else{
-                if(resultados.length == 0){
-                    res.status(400).json({status:400, msg: 'cliente nao existe'});
-                    return;
-                }else{
-                    clienteBanco.client_id = resultados[0].client_id;
-                    clienteBanco.client_secret = resultados[0].client_secret;
-                    clienteBanco.username = resultados[0].username;
-                    clienteBanco.password = resultados[0].password;
-                    
 
-                    const client_id = clienteBanco.client_id;
-                    const client_secret = clienteBanco.client_secret;
-                    const username = clienteBanco.username;
-                    const password = clienteBanco.password;
-
-                    const urlToken = 'https://api.plugg.to/oauth/token';
-                    const metodo = 'POST';
-                    const corpo = `grant_type=password&client_id=${client_id}&client_secret=${client_secret}&username=${username}&password=${password}`;
-                    const header = 'application/x-www-form-urlencoded';
-
-                    const respostaPluggto = enviarRequisicao(metodo, urlToken, corpo, header);
-                
-                    //FAZER UPDATE NO BANCO
-                    if(respostaPluggto.status == 200){
-                        this.salvarToken(respostaPluggto.resultado.access_token, respostaPluggto.resultado.refresh_token, cliente.idCliente);
-                    }
-                    
-                    res.status(respostaPluggto.status).json(respostaPluggto);
-                }
+                callback(resultados[0]);
             }
         });
-
     }
 
     salvarToken(access_token, refresh_token, idCliente){

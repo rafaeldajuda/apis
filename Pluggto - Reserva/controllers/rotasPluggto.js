@@ -1,6 +1,13 @@
 const pluggto = require('../model/Pluggto');
 
 module.exports = (app) => {
+
+    //ROTA TESTE
+    app.post('/login', (req, res) =>{
+        res.header('Access-Control-Allow-Origin', "*");
+        res.header('Access-Control-Allow-Methods', "*");
+        res.status(200).json({token: "123"});
+    });
     
     //GERAR TOKEN
     app.post('/token', (req, res) =>{

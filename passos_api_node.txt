@@ -1,15 +1,19 @@
 1 - Iniciar projeto node
 2 - Instalar express
-3 - Instalar codemon
-4 - Instalar consign
-5 - Instalar body-parser
-6 - Instalar xmlhttprequest
-6 - Configurar servidor (pasta config)
-7 - Criar controllers (pasta e arquivos)
-8 - Configurar rotas iniciais
-9 - Atrelar controller ao consign
-10 - Instalar mysql
-11 - Configurar banco e tabelas
-12 - Criar model (pasta e classes)
-13 - Criar classes (controller)
+3 - Configurar servidor (pasta config)
+4 - Iniciar servidor
+5 - Instalar nodemon
+6 - Instalar consign
+7 - Instalar body-parser
+8 - Instalar xmlhttprequest
+9 - Configurar servidor novamente (pasta config)
+10 - Criar controllers (pasta e arquivos)
+11 - Configurar rotas iniciais
+13 - Atrelar controller ao consign
+14 - Instalar mysql
+15 - Configurar banco e tabelas
+16 - Criar model (pasta e classes)
+17 - Criar classes (controller)
 
+OUTROS:
+mysql -> npm install mysql

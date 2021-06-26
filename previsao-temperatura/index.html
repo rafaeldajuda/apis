@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UFT-8>">
+        <title>Previsao Tempo</title>
+        <link rel="stylesheet" href="./view/reset.css">
+        <link rel="stylesheet" href="./view/style.css">
+    </head>
+    <body>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript">
+            google.charts.load('current', {packages: ['corechart', 'line']});
+            google.charts.setOnLoadCallback(drawBackgroundColor);
+
+            function drawBackgroundColor() {
+                var data = new google.visualization.DataTable();
+                data.addColumn('datetime', 'Date');
+                data.addColumn('number', 'Temperature');
+
+                var date_1 = new Date();
+                var date_2 = new Date();
+                var date_3 = new Date();
+                var date_4 = new Date();
+
+                date_1.setDate(date_1.getDate() - 3);
+                date_2.setDate(date_2.getDate() - 2);
+                date_3.setDate(date_3.getDate() - 1);
+
+                data.addRows([
+                    [date_1, 25], [date_2, 30], [date_3, 28], [date_4, 32]
+                ]);
+
+                var options = {
+                    hAxis: {
+                        title: 'Time',
+                        format: 'Y-MM-d',
+                        textStyle: {
+                            fontSize: 12    
+                        }
+                    },
+                    vAxis: {
+                        title: 'Temperature',
+                        textStyle: {
+                            fontSize: 12    
+                        }
+                    },
+                    backgroundColor: '#f1f8e9',
+                    height: 400,
+                    textStyle: {
+                        fontSize: 50    
+                    }
+                };
+
+                var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            }
+        </script>
+        <!-- 
+            
+        -->
+
+        <!-- TITULO -->
+        <header>
+            <div class="titulo">
+                <!--<img src="http://localhost:3000/view/icons/sun_48.png" alt="ícone de um sol">-->
+                <img src="./view/icons/sun_48.png" alt="ícone de um sol">
+                <h1>HISTÓRICO TAUBATÉ - TEMPERATURA</h1>
+            </div>
+        </header>
+
+        <!-- GRAFICO - LISTA -->
+        <main>
+            <div class="grafico">
+                <div id="chart_div"></div>
+            </div>
+                
+            
+            <div class="lista">
+                <table>
+                    <tr>
+                        <td>
+                            <p class="td-titulo">Janeiro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Fevereiro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Março</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Abril</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Maio</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Junho</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p class="td-titulo">Julho</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Agosto</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Setembro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Outubro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Novembro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                        <td>
+                            <p class="td-titulo">Dezembro</p>
+                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
+                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+
+        <!-- REDES SOCIAIS - CREDITO -->
+        <footer>
+            <div class="redes-sociais">
+                <a href="https://github.com/rafaeldajuda/" target="_blank"><img src="./view/icons/github_32.png"></a>
+                <a href="https://www.linkedin.com/in/rafael-d-ajuda-84742bb7/" target="_blank"><img src="./view/icons/linkedin_32.png"></a>
+                <div class="linha-separadora"></div>
+                <p>Desenvolvido por Rafael D'Ajuda</p>
+            </div>
+            
+        </footer>
+    </body>
+</html>

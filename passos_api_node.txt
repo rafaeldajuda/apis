@@ -16,4 +16,5 @@
 17 - Criar classes (controller)
 
 OUTROS:
-mysql -> npm install mysql
+mysql -> npm install mysql 
+cors -> npm install cors (acesso a urls)

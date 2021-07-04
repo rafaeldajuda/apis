@@ -7,6 +7,7 @@ module.exports = () => {
 
     //ARQUIVOS ESTÁTICOS
     app.use('/view', express.static('view'));
+    app.use('/control', express.static('controllers'));
     //app.use('/view/icons', express.static('view/icons'));
 
     routes(app);

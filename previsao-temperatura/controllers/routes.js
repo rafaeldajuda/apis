@@ -41,4 +41,9 @@ module.exports = (app) => {
             }
         });
     });
+
+    app.get('/temperaturas', (req, res) =>{
+        res.header('Acess-Control-Allow-Origin', '*');
+        PrevisaoTempo.selectTemperaturas(res);
+    });
 }

@@ -1,43 +1,55 @@
-google.charts.load('current', { packages: ['corechart', 'line'] });
-google.charts.setOnLoadCallback(drawBackgroundColor);
+var temperaturas = httpRequest("GET", "http://localhost:3000/temperaturas", null, {});
+temperaturas = JSON.parse(temperaturas);
 
-function drawBackgroundColor() {
-    var data = new google.visualization.DataTable();
-    data.addColumn('datetime', 'Date');
-    data.addColumn('number', 'Temperature');
+var listaMediaTemperaturas = [];
+var listaIds = [];
 
-    var date_1 = new Date();
-    var date_2 = new Date();
-    var date_3 = new Date();
-
-    date_1.setDate(date_1.getDate() - 2);
-    date_2.setDate(date_2.getDate() - 1);
-
-    data.addRows([
-        [date_1, 25], [date_2, 30], [date_3, 28]
-    ]);
-
-    var options = {
-        hAxis: {
-            title: 'Time',
-            format: 'Y-MM-d',
-            textStyle: {
-                fontSize: 12
-            }
-        },
-        vAxis: {
-            title: 'Temperature',
-            textStyle: {
-                fontSize: 12
-            }
-        },
-        backgroundColor: '#f1f8e9',
-        height: 400,
-        textStyle: {
-            fontSize: 50
+//TEMPERATURAS MEDIAS
+for (var i = 0; i < temperaturas.length; i++) {
+    var data = temperaturas[i].temperatureDate.substring(0, 19);
+    var media = 0;
+    var qtd = 0;
+    for (var j = 0; j < temperaturas.length; j++) {
+        if (data.substring(0, 10) == temperaturas[j].temperatureDate.substring(0, 10) && !listaIds.includes(temperaturas[j].id)) {
+            media += temperaturas[j].temperature;
+            qtd++;
+            listaIds.push(temperaturas[j].id);
         }
-    };
+    }
 
-    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    if (qtd != 0) {
+        var item = [];
+        item[0] = new Date(data);
+        item[1] = parseFloat((media / qtd).toFixed(2));
+        listaMediaTemperaturas.push(item);
+    }
+}
+
+if(listaMediaTemperaturas.length > 30){
+    var dif = listaMediaTemperaturas.length - 30;
+    listaMediaTemperaturas.slice(0, dif);
+}
+
+function httpRequest(metodo, url, body, headers,) {
+    const xhr = new XMLHttpRequest();
+
+    //OPEN CONNECTION
+    xhr.open(metodo, url, false);
+
+    //ADD HEADERS
+    for (var h in headers) {
+        xhr.setRequestHeader(h, headers[h]);
+    }
+
+    //res.status(200).json(url);
+
+    //SEND REQUEST
+    xhr.send(body);
+
+    /*
+    xhr.addEventListener('load', () => {
+        console.log(xhr.responseText);
+    });
+    */
+    return xhr.responseText;
 }

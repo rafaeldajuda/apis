@@ -8,14 +8,15 @@
     </head>
     <body>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="./control/googleGraph.js"></script>
         <script type="text/javascript">
             google.charts.load('current', {packages: ['corechart', 'line']});
             google.charts.setOnLoadCallback(drawBackgroundColor);
 
             function drawBackgroundColor() {
                 var data = new google.visualization.DataTable();
-                data.addColumn('datetime', 'Date');
-                data.addColumn('number', 'Temperature');
+                data.addColumn('date', 'Date');
+                data.addColumn('number', 'Temperatura');
 
                 var date_1 = new Date();
                 var date_2 = new Date();
@@ -26,20 +27,23 @@
                 date_2.setDate(date_2.getDate() - 2);
                 date_3.setDate(date_3.getDate() - 1);
 
+                /*
                 data.addRows([
                     [date_1, 25], [date_2, 30], [date_3, 28], [date_4, 32]
-                ]);
+                ]);*/
+
+                data.addRows(listaMediaTemperaturas);
 
                 var options = {
                     hAxis: {
-                        title: 'Time',
+                        title: 'Tempo',
                         format: 'Y-MM-d',
                         textStyle: {
                             fontSize: 12    
                         }
                     },
                     vAxis: {
-                        title: 'Temperature',
+                        title: 'Temperatura Média',
                         textStyle: {
                             fontSize: 12    
                         }
@@ -55,16 +59,14 @@
                 chart.draw(data, options);
             }
         </script>
-        <!-- 
-            
-        -->
+        
 
         <!-- TITULO -->
         <header>
             <div class="titulo">
                 <!--<img src="http://localhost:3000/view/icons/sun_48.png" alt="ícone de um sol">-->
                 <img src="./view/icons/sun_48.png" alt="ícone de um sol">
-                <h1>HISTÓRICO TAUBATÉ - TEMPERATURA</h1>
+                <h1>HISTÓRICO TEMPERATURA - TAUBATÉ</h1>
             </div>
         </header>
 
@@ -77,73 +79,11 @@
             
             <div class="lista">
                 <table>
-                    <tr>
-                        <td>
-                            <p class="td-titulo">Janeiro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Fevereiro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Março</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Abril</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Maio</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Junho</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <p class="td-titulo">Julho</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Agosto</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Setembro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Outubro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Novembro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                        <td>
-                            <p class="td-titulo">Dezembro</p>
-                            <p class="td-info">Dia mais quente: 15 (28°C)</p>
-                            <p class="td-info">Dia mais frio: 27 (16°C)</p>
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
         </main>
+        <script type="text/javascript" src="./control/maxMinMeses.js"></script>
 
         <!-- REDES SOCIAIS - CREDITO -->
         <footer>

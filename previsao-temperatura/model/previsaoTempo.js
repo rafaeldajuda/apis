@@ -1,5 +1,6 @@
 const dbConnection = require('../infraestrutura/dbConnection');
 const appConfig = require('../config/appConfig');
+const { response } = require('express');
 
 class PrevisaoTempo {
 
@@ -34,6 +35,26 @@ class PrevisaoTempo {
             }
 
         }
+    }
+
+    selectTemperaturas(res){
+        const dataDoAno = new Date();
+        const dataInicial = dataDoAno.getUTCFullYear() + "-01-01 00:00:00";
+        const dataFinal = dataDoAno.getFullYear() + "-12-31 23:59:59";
+
+        const sql = `SELECT id, DATE_FORMAT(temperatureDate, "%Y-%m-%d %H:%i:%s") AS  temperatureDate, 
+            logDate, temperature 
+            FROM previsaoTempo 
+            WHERE temperatureDate >= '${dataInicial}' AND temperatureDate < '${dataFinal}'
+            ORDER BY temperatureDate ASC`;
+
+        dbConnection.query(sql, (error, response) => {
+            if(error){
+                res.status(400).json(error);
+            }else{
+                res.status(200).json(response);
+            }
+        });
     }
 
 }
